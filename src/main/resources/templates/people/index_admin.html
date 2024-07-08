@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin_delete</title>
+</head>
+<body>
+
+<div th:each="person : ${AllPeople}">
+    <a th:href="@{/user/{id}(id = ${person.getId()})}"  th:text="${person.getUsername()}">user</a>
+    <a th:href="@{/admin/{id}/edit(id= ${person.getId()})}">Edit</a>
+    <form th:method="DELETE" th:action="@{/admin/{id}/del(id=${person.getId()})}">
+        <input type="submit" value = "Delete"/>
+    </form>
+    <form th:method="POST" th:action="@{/admin/{id}/setRolAdmin(id=${person.getId()})}">
+        <input type="submit" value = "AddRoleADMIN"/>
+    </form>
+    <form th:method="POST" th:action="@{/admin/{id}/setRolUser(id=${person.getId()})}">
+        <input type="submit" value = "addRoleUSER"/>
+    </form>
+</div>
+<br/>
+<hr/>
+<a href = "admin/new">Crate new person</a>
+<br/>
+<hr/>
+<a href = "/logout">ВЫХОД</a>
+</body>
+</html>
